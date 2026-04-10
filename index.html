@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mini WebGIS</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+
+    h2 {
+      margin-bottom: 10px;
+    }
+
+    .controls {
+      margin-bottom: 12px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+    }
+
+    #map {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      position: relative;
+      border: 2px solid #999;
+      background: linear-gradient(to bottom, #bfe7ff, #dff5d8);
+      overflow: hidden;
+    }
+
+    .marker {
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      border-radius: 50%;
+      cursor: pointer;
+      border: 2px solid white;
+      box-shadow: 0 0 4px rgba(0,0,0,0.4);
+      transform: translate(-50%, -50%);
+    }
+
+    .red { background-color: red; }
+    .blue { background-color: blue; }
+    .green { background-color: green; }
+
+    #panel {
+      margin-top: 15px;
+      max-width: 800px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .card {
+      border: 1px solid #ccc;
+      padding: 12px;
+      border-radius: 8px;
+      background: #f9f9f9;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin-bottom: 8px;
+      gap: 8px;
+    }
+
+    .legend-color {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      border: 1px solid #333;
+    }
+
+    #markerList li {
+      margin-bottom: 6px;
+    }
+  </style>
+</head>
+<body>
+  <h2>Mini WebGIS</h2>
+
+  <div class="controls">
+    <button id="btnRandom">Add Random Marker</button>
+    <button id="btnClear">Clear All Markers</button>
+    <button id="btnToggle">Hide Layer</button>
+
+    <label for="markerColor">Marker Color:</label>
+    <select id="markerColor">
+      <option value="red">Red</option>
+      <option value="blue">Blue</option>
+      <option value="green">Green</option>
+    </select>
+  </div>
+
+  <div id="map"></div>
+
+  <div id="panel">
+    <div class="card">
+      <h3>Marker Info</h3>
+      <p id="info">Belum ada marker dipilih.</p>
+      <p><strong>Total Marker:</strong> <span id="counter">0</span></p>
+    </div>
+
+    <div class="card">
+      <h3>Legend</h3>
+      <div class="legend-item">
+        <div class="legend-color" style="background:red;"></div>
+        <span>Red Marker</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background:blue;"></div>
+        <span>Blue Marker</span>
+      </div>
+      <div class="legend-item">
+        <div class="legend-color" style="background:green;"></div>
+        <span>Green Marker</span>
+      </div>
+    </div>
+
+    <div class="card" style="grid-column: 1 / span 2;">
+      <h3>Marker List</h3>
+      <ul id="markerList"></ul>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
